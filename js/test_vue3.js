@@ -1,20 +1,32 @@
+const Toast = Swal.mixin({
+  toast: true,
+  position: "top",
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.onmouseenter = Swal.stopTimer;
+    toast.onmouseleave = Swal.resumeTimer;
+  },
+});
+
 const idols = [
   {
     name: "IU",
     ig_url: "https://www.instagram.com/dlwlrma/",
-    img: "./pic/IU.jpg",
+    img: "./imgs/IU.jpg",
     birthday: "1993/05/16",
   },
   {
     name: "Taeyeon",
     ig_url: "https://www.instagram.com/taeyeon_ss/",
-    img: "./pic/Taeyeon.jpg",
+    img: "./imgs/Taeyeon.jpg",
     birthday: "1989/03/09",
   },
   {
     name: "CL",
     ig_url: "https://www.instagram.com/chaelincl/",
-    img: "./pic/CL.jpg",
+    img: "./imgs/CL.jpg",
     birthday: "1991/02/26",
   },
 ];
@@ -218,9 +230,9 @@ lessons.forEach((e) => {
             e3.items.forEach((e4) => {
               newHtml2 +=
                 `<p id="p-${e4.idx}">${e4.desc}</p>` +
-                `<div class="m-3 d-flex w-100 jc-around">` +
+                `<div class="m-3 d-flex w-100 jc-around" style="height: 50rem;">` +
                 `<pre id="pre-${e4.idx}" class="w-50 p-3"></pre>` +
-                `<div id="div-${e4.idx}" class="w-50 p-3"></div>` +
+                `<div id="div-${e4.idx}" class="w-50 p-3 overflow-auto mb-3"></div>` +
                 `</div><hr class="dash-hr">`;
 
               newHtml +=
@@ -232,9 +244,9 @@ lessons.forEach((e) => {
             newHtml += `</ul>`;
           } else {
             newHtml2 +=
-              `<div class="m-3 d-flex w-100 jc-around">` +
+              `<div class="m-3 d-flex w-100 jc-around" style="height: 50rem;">` +
               `<pre id="pre-${e3.idx}" class="w-50 p-3"></pre>` +
-              `<div id="div-${e3.idx}" class="w-50 p-3"></div>` +
+              `<div id="div-${e3.idx}" class="w-50 p-3 overflow-auto mb-3"></div>` +
               `</div>`;
           }
           newHtml2 += `</div><hr class="dotted-hr">`;
@@ -244,9 +256,9 @@ lessons.forEach((e) => {
         newHtml += `</ul>`;
       } else {
         newHtml2 +=
-          `<div class="m-3 d-flex w-100 jc-around">` +
+          `<div class="m-3 d-flex w-100 jc-around" style="height: 50rem;">` +
           `<pre id="pre-${e2.idx}" class="w-50 p-3"></pre>` +
-          `<div id="div-${e2.idx}" class="w-50 p-3"></div>` +
+          `<div id="div-${e2.idx}" class="w-50 p-3 overflow-auto mb-3"></div>` +
           `</div>`;
       }
       newHtml2 += `</div><hr>`;
@@ -258,10 +270,10 @@ lessons.forEach((e) => {
     newHtml += "</ul></li>";
   } else {
     newHtml2 +=
-      `<div class="m-3 d-flex w-100 jc-around">` +
+      `<div class="m-3 d-flex w-100 jc-around" style="height: 50rem;">` +
       `<h3 id="h3-${e.idx}">${e.desc}</h3>` +
       `<pre id="pre-${e.idx}" class="w-50 p-3"></pre>` +
-      `<div id="div-${e.idx}" class="w-50 p-3"></div>` +
+      `<div id="div-${e.idx}" class="w-50 p-3 overflow-auto mb-3"></div>` +
       `</div><hr class="dash-hr">`;
   }
 });
@@ -276,7 +288,7 @@ newHtml = `
   <input v-model="name">
   <div class="mt-3">
     <pre>
-      I Love {{ name }}!
+      Hello {{ name }}!
       {{ name }}
       {{ name }}
       {{ str }}    
@@ -329,7 +341,7 @@ newHtml = `
   <pre class="overflow-auto">
     為避免與後端模板引擎衝突，可以使用 delimiters 來重新定義模板語法
 
-    I Love %{ name }%!
+    Hello %{ name }%!
   <pre>
   <img :src="img">
 `;
@@ -385,7 +397,7 @@ $("#pre-1-2-2").text(`
   // before
   $("#before-1-2-2").html(\`
     before
-    <pre>I Love \${app.$data.name}!</pre>
+    <pre>Hello \${app.$data.name}!</pre>
     <img src="\${app.$data.img}">
   \`);
 
@@ -397,7 +409,7 @@ $("#pre-1-2-2").text(`
   //after
   $("#after-1-2-2").html(\`
     after
-    <pre>I Love \${app.$data.name}!</pre>
+    <pre>Hello \${app.$data.name}!</pre>
     <img src="\${app.$data.img}">
   \`);
 `);
@@ -416,7 +428,7 @@ app = createApp({
 // before
 $("#before-1-2-2").html(`
   before
-  <pre>I Love ${app.$data.name}!</pre>
+  <pre>Hello ${app.$data.name}!</pre>
   <img src="${app.$data.img}">
 `);
 
@@ -428,7 +440,7 @@ app.img = idol.img;
 //after
 $("#after-1-2-2").html(`
   after
-  <pre>I Love ${app.$data.name}!</pre>
+  <pre>Hello ${app.$data.name}!</pre>
   <img src="${app.$data.img}">
 `);
 
@@ -444,7 +456,7 @@ $("#pre-1-2-3").text(`
       };
     },
     template: \`
-      <pre>I love {{ name }}!</pre>
+      <pre>Hello {{ name }}!</pre>
       <img :src="img">
     \`
   }).mount("#test-1-2-3");
@@ -459,7 +471,7 @@ app = createApp({
     };
   },
   template: `
-    <pre>I love {{ name }}!</pre>
+    <pre>Hello {{ name }}!</pre>
     <img :src="img">
   `,
 }).mount("#div-1-2-3");
@@ -981,11 +993,12 @@ app = createApp({
 
 // **************************************************
 
-newHtml = `<input v-model.lazy="val">\n  <p class="mt-3">{{ val }}</p>`;
+newHtml =
+  `<div>v-model = oninput</div>` +
+  `\n  <div>v-model.lazy = onchange</div>` +
+  `\n  <input class="mt-3" v-model.lazy="val">` +
+  `\n  <p class="mt-3">{{ val }}</p>`;
 $("#pre-1-4-3-1").text(`
-  v-model = oninput
-  v-model.lazy = onchange
-  
   ${newHtml}
 
   app = createApp({
@@ -2201,39 +2214,149 @@ $("#div-1-7-1").parents()[1].innerHTML += newHtml;
 newHtml = `
   <p>修改內容來觀察 Vue 實體的生命週期</p>
   <hr>
-
-  <div class="wrap">
-    <div class="demo">
-      <demo-app v-if="is_active" @update="push_msg" />
-    </div>
-
+  <ul>
+    <li>@update 定義於子組件中的 this.$emit("update", "test");</li>
+    <li>透過 @update="push_msg" 將 this.$emit("update", "test"); 中的 "test"作為參數傳入至 push_msg(msg) 中</li>
+  </ul>
+  <div class="container">
     <div class="inspector">
       <div class="inspector-msg" v-for="(m, idx) in msg" :class="{ 'bg-aquablue' : m.is_highlight }">{{ m.msg }}</div>
+    </div>
+
+    <div class="mt-3 overflow-auto">
+      <demo-app v-if="is_active" @update="push_msg" />
     </div>
   </div>
 
   <hr>
-  <button @click="toggle">{{ (!is_active) ? 'Active' : 'Destroy' }} the Vue instance</button>
-  <button @click="msg = []">Empty the inspector</button>
+  <div class="d-flex jc-around ai-center">
+    <button @click="toggle">{{ (!is_active) ? 'Mount' : 'Unmount' }}</button>
+    <button @click="msg = []">清除紀錄</button>
+  </div>
 `;
 $("#pre-1-7-1").text(`
   ${newHtml}
-`);
-$("#div-1-7-1").html(newHtml);
 
+  idol = get_idol();
 app = Vue.createApp({
   data() {
     return {
       msg: [],
       is_active: false,
+      name: idol.name,
     };
   },
   methods: {
     toggle() {
       if (!this.is_active) this.msg = [];
       this.is_active = !this.is_active;
+      while (this.name == idol.name && this.is_active) idol = get_idol();
+      this.name = idol.name;
     },
     push_msg(msg) {
+      console.log(msg);
+      this.msg.push({
+        is_highlight: msg.includes("==="),
+        msg: msg,
+      });
+
+      this.$nextTick(() => {
+        const inspector = document.querySelector(".inspector");
+        inspector.scrollTop = inspector.scrollHeight;
+      });
+    },
+  },
+});
+
+app.component("demo-app", {
+  template: \`
+    <p>{{ msg }}</p>
+    <div class="d-flex jc-around ai-start">
+      <input v-model="msg">
+      <img :src="img">
+    </div>
+  \`,
+  data() {
+    return {
+      msg: \`Hello \${idol.name}!\`,
+      img: idol.img,
+    };
+  },
+  beforeCreate() {
+    this.$emit("update", "=== beforeCreate! ===");
+    this.$emit("update", \`this.msg: \${this.msg}\`);
+    this.$emit("update", \`this.$el: \${this.$el}\`);
+  },
+  created() {
+    this.$emit("update", "=== created! ===");
+    this.$emit("update", \`this.msg: \${this.msg}\`);
+    this.$emit("update", \`this.$el: \${this.$el}\`);
+  },
+  beforeMount() {
+    this.$emit("update", "=== beforeMount! ===");
+    this.$emit("update", \`this.msg: \${this.msg}\`);
+    this.$emit("update", \`this.$el: \${this.$el}\`);
+  },
+  mounted() {
+    this.$emit("update", "=== mounted! ===");
+    this.$emit("update", \`this.msg: \${this.msg}\`);
+    this.$emit("update", \`this.$el: \${this.$el}\`);
+  },
+  beforeUpdate() {
+    this.$emit("update", "=== beforeUpdate! ===");
+    this.$emit(
+      "update",
+      \`msg in view: \${this.$el.querySelector("h3").innerText}\`
+    );
+    this.$emit("update", \`this.msg: \${this.msg}\`);
+  },
+  updated() {
+    this.$emit("update", "=== updated! ===");
+    this.$emit(
+      "update",
+      \`msg in view: \${this.$el.querySelector("h3").innerText}\`
+    );
+    this.$emit("update", \`this.msg: \${this.msg}\`);
+  },
+  beforeUnmount() {
+    this.$emit("update", \`=== beforeUnmount! ===\`);
+  },
+  unmounted() {
+    this.$emit("update", \`=== unmount! ===\`);
+  },
+  errorCapture() {
+    this.$emit("update", \`=== errorCapture! ===\`);
+  },
+  activated() {
+    this.$emit("update", \`=== activated! ===\`);
+  },
+  errorCapture() {
+    this.$emit("update", \`=== deactivated! ===\`);
+  },
+});
+
+app.mount("#div-1-7-1");
+`);
+$("#div-1-7-1").html(newHtml);
+
+idol = get_idol();
+app = Vue.createApp({
+  data() {
+    return {
+      msg: [],
+      is_active: false,
+      name: idol.name,
+    };
+  },
+  methods: {
+    toggle() {
+      if (!this.is_active) this.msg = [];
+      this.is_active = !this.is_active;
+      while (this.name == idol.name && this.is_active) idol = get_idol();
+      this.name = idol.name;
+    },
+    push_msg(msg) {
+      console.log(msg);
       this.msg.push({
         is_highlight: msg.includes("==="),
         msg: msg,
@@ -2249,52 +2372,39 @@ app = Vue.createApp({
 
 app.component("demo-app", {
   template: `
-    <div>
-      <h3>{{ msg }}</h3>
+    <p>{{ msg }}</p>
+    <div class="d-flex jc-around ai-start">
       <input v-model="msg">
-    </div>`,
+      <img :src="img">
+    </div>
+  `,
   data() {
     return {
-      msg: "Hello Vue.js!",
+      msg: `Hello ${idol.name}!`,
+      img: idol.img,
     };
   },
   beforeCreate() {
-    console.log(this)
-    console.log("=== beforeCreate! ===");
-    console.log(this.msg);
-    console.log(this.$el);
     this.$emit("update", "=== beforeCreate! ===");
     this.$emit("update", `this.msg: ${this.msg}`);
     this.$emit("update", `this.$el: ${this.$el}`);
   },
   created() {
-    console.log("=== created! ===");
-    console.log(this.msg);
-    console.log(this.$el);
     this.$emit("update", "=== created! ===");
     this.$emit("update", `this.msg: ${this.msg}`);
     this.$emit("update", `this.$el: ${this.$el}`);
   },
   beforeMount() {
-    console.log("=== beforeMount! ===");
-    console.log(this.msg);
-    console.log(this.$el);
     this.$emit("update", "=== beforeMount! ===");
     this.$emit("update", `this.msg: ${this.msg}`);
     this.$emit("update", `this.$el: ${this.$el}`);
   },
   mounted() {
-    console.log("=== mounted! ===");
-    console.log(this.msg);
-    console.log(this.$el);
     this.$emit("update", "=== mounted! ===");
     this.$emit("update", `this.msg: ${this.msg}`);
     this.$emit("update", `this.$el: ${this.$el}`);
   },
   beforeUpdate() {
-    console.log("=== beforeUpdate! ===");
-    console.log(this.msg);
-    console.log(this.$el);
     this.$emit("update", "=== beforeUpdate! ===");
     this.$emit(
       "update",
@@ -2303,9 +2413,6 @@ app.component("demo-app", {
     this.$emit("update", `this.msg: ${this.msg}`);
   },
   updated() {
-    console.log("=== updated! ===");
-    console.log(this.msg);
-    console.log(this.$el);
     this.$emit("update", "=== updated! ===");
     this.$emit(
       "update",
@@ -2314,25 +2421,20 @@ app.component("demo-app", {
     this.$emit("update", `this.msg: ${this.msg}`);
   },
   beforeUnmount() {
-    console.log("=== updated! ===");
     this.$emit("update", `=== beforeUnmount! ===`);
   },
   unmounted() {
-    console.log("=== updated! ===");
     this.$emit("update", `=== unmount! ===`);
   },
   errorCapture() {
-    console.log("=== errorCapture! ===");
     this.$emit("update", `=== errorCapture! ===`);
   },
   activated() {
-    console.log("=== activated! ===");
     this.$emit("update", `=== activated! ===`);
   },
   errorCapture() {
-    console.log("=== deactivated! ===");
     this.$emit("update", `=== deactivated! ===`);
-  }
+  },
 });
 
 app.mount("#div-1-7-1");

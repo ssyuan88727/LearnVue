@@ -1,0 +1,101 @@
+.square {
+  width: 200px;
+  height: 200px;
+  border: 3px solid black;
+}
+hr.dash-hr {
+  margin: 1rem 0;
+  color: inherit;
+  border: 0;
+  border-top: 3px dashed;
+  opacity: 0.25;
+}
+hr.double-hr {
+  margin: 1rem 0;
+  color: inherit;
+  border: 0;
+  border-top: 3px double;
+  opacity: 0.25;
+}
+hr.dotted-hr {
+  margin: 1rem 0;
+  color: inherit;
+  border: 0;
+  border-top: 3px dotted;
+  opacity: 0.25;
+}
+.cursor-help {
+  cursor: help !important;
+}
+.cursor-pointer {
+  cursor: pointer !important;
+}
+.cursor-progress {
+  cursor: progress !important;
+}
+.cursor-wait {
+  cursor: wait !important;
+}
+.cursor-text {
+  cursor: text !important;
+}
+.cursor-vertical-text {
+  cursor: vertical-text !important;
+}
+.cursor-not-allowed {
+  cursor: not-allowed !important;
+}
+.cursor-grab {
+  cursor: grab !important;
+}
+.cursor-grabing {
+  cursor: grabbing !important;
+}
+.cursor-help {
+  cursor: pointer !important;
+}
+.bg-pink {
+  background-color: #ffb7dd !important;
+}
+.bg-aquablue {
+  background-color: #99ffff !important;
+}
+.color-pink {
+  color: #ffb7dd !important;
+}
+.color-aquablue {
+  color: #99ffff;
+}
+.container > div {
+  height: 10rem;
+}
+.inspector {
+  max-width: 400px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+}
+.inspector-msg {
+  padding-left: 1rem;
+  font-size: 1rem;
+  line-height: 2.5;
+  border-bottom: 1px solid #ececec;
+}
+.inspector-msg.highlight {
+  background-color: lightcyan;
+}
+.sidebar {
+  position: fixed;
+  z-index: 10;
+  margin: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  box-sizing: border-box;
+  border-right: 1px solid #eaecef;
+  overflow-y: auto;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
