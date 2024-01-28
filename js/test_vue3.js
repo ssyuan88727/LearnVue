@@ -20,13 +20,13 @@ const idols = [
   {
     name: "Taeyeon",
     ig_url: "https://www.instagram.com/taeyeon_ss/",
-    img: "./imgs/Taeyeon.jpg",
+    img: "./imgs/Taeyeon.png",
     birthday: "1989/03/09",
   },
   {
     name: "CL",
     ig_url: "https://www.instagram.com/chaelincl/",
-    img: "./imgs/CL.jpg",
+    img: "./imgs/CL.png",
     birthday: "1991/02/26",
   },
 ];
